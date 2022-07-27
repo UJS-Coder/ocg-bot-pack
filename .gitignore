@@ -2,8 +2,9 @@
 /main/ocg-bot/LICENSE
 /main/ocgcard/target
 
-/util/ocgcarddb/cardget/target/
-/util/ocgcarddb/cardget/mvnw
-/util/ocgcarddb/cardget/mvnw.cmd
-/util/ocgcarddb/cardget/cardget.iml
-/util/ocgcarddb/cardget/.mvn/
+/util/cardget/target/
+/util/cardget/mvnw
+/util/cardget/mvnw.cmd
+/util/cardget/cardget.iml
+/util/cardget/.mvn/
+/util/cardget/target/

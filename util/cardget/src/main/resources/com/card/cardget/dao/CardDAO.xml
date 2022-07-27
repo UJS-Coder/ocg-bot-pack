@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.card.cardget.dao.CardDAO">
+    <resultMap id="dataResultMap" type="com.card.cardget.dataobject.CardData">
+        <id column="id" property="id"/>
+        <result column="card_id" property="cardId"/>
+        <result column="rule" property="rule"/>
+        <result column="setname" property="setname"/>
+        <result column="data2" property="data2"/>
+        <result column="type" property="type"/>
+        <result column="atk" property="atk"/>
+        <result column="def" property="def"/>
+        <result column="level" property="level"/>
+        <result column="zz" property="zz"/>
+        <result column="category" property="category"/>
+        <result column="attribute" property="attribute"/>
+    </resultMap>
+    <resultMap id="textResultMap" type="com.card.cardget.dataobject.CardText">
+        <id column="id" property="id"/>
+        <result column="card_id" property="cardId"/>
+        <result column="name" property="name"/>
+        <result column="effect" property="effect"/>
+    </resultMap>
+
+    <resultMap id="cardResultMap" type="com.card.cardget.dataobject.Card">
+        <id column="id" property="id"/>
+        <result column="card_id" property="cardId"/>
+        <result column="name" property="name"/>
+        <result column="jp_name" property="jpName"/>
+        <result column="en_name" property="enName"/>
+        <result column="effect" property="effect"/>
+        <result column="zz" property="zz"/>
+        <result column="main_type" property="mainType"/>
+        <result column="type" property="type"/>
+        <result column="level" property="level"/>
+        <result column="attribute" property="attribute"/>
+        <result column="atk" property="atk"/>
+        <result column="def" property="def"/>
+    </resultMap>
+
+    <resultMap id="cardNameResultMap" type="com.card.cardget.dataobject.CardName">
+        <result column="card_id" property="cardId"/>
+        <result column="name" property="name"/>
+        <result column="jp_name" property="jpName"/>
+        <result column="en_name" property="enName"/>
+    </resultMap>
+    
+    <select id="searchById" resultMap="textResultMap">
+        select * from texts where id = #{id} limit 1
+    </select>
+
+    <select id="searchYgocardById" resultMap="cardResultMap">
+        select * from ygo_card where id = #{id} limit 1
+    </select>
+
+    <select id="searchDataByCardId" resultMap="dataResultMap">
+        select * from datas where card_id = #{cardId} limit 1
+    </select>
+
+    <select id="getSameName" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM ygo_card where name=#{name}
+    </select>
+
+    <select id="getcount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM texts
+    </select>
+
+    <insert id="insertData" parameterType="com.card.cardget.dataobject.Card">
+        insert into ygo_card(card_id,name,effect,zz,main_type,type,level,attribute,atk,def)
+        values
+        (#{cardId},#{name},#{effect},#{zz},#{mainType},#{type},#{level},#{attribute},#{atk},#{def})
+    </insert>
+
+    <insert id="insertFront" parameterType="com.card.cardget.dataobject.Card">
+        insert into ygo_card_new(card_id,name,effect,zz,main_type,type,level,attribute,atk,def)
+        values
+        (#{cardId},#{name},#{effect},#{zz},#{mainType},#{type},#{level},#{attribute},#{atk},#{def})
+    </insert>
+
+    <select id="searchNew" resultMap="cardResultMap">
+        select * from ygo_card_new where id=#{id}
+    </select>
+
+    <select id="getNewId" resultMap="textResultMap">
+        select * from texts where name=#{name}
+    </select>
+
+    <update id="cardIdupdate" parameterType="com.card.cardget.dataobject.Card">
+        update ygo_card set card_id=#{cardId} where name=#{name}
+    </update>
+
+    <update id="cardAttributeUpdate" parameterType="com.card.cardget.dataobject.Card">
+        update ygo_card set attribute =#{attribute} where card_id=#{cardId}
+    </update>
+ </mapper>
