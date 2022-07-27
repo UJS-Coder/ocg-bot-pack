@@ -1,2 +1,9 @@
 /.idea/
 /main/ocg-bot/LICENSE
+/main/ocgcard/target
+
+/util/ocgcarddb/cardget/target/
+/util/ocgcarddb/cardget/mvnw
+/util/ocgcarddb/cardget/mvnw.cmd
+/util/ocgcarddb/cardget/cardget.iml
+/util/ocgcarddb/cardget/.mvn/
